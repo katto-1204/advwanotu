@@ -150,23 +150,7 @@ export default function Quiz() {
         </View>
       ) : quizFinished ? (
         <View style={styles.finishedContainer}>
-          {/* Left Confetti */}
-          <ConfettiCannon
-            count={25} // Half of 50
-            origin={{ x: screenWidth * 0.2, y: 0 }} // Left side
-            explosionSpeed={1} // No explosion
-            fallSpeed={3000} // Smooth fall
-            fadeOut={true}
-          />
 
-          {/* Right Confetti */}
-          <ConfettiCannon
-            count={25} // Half of 50
-            origin={{ x: screenWidth * 0.8, y: 0 }} // Right side
-            explosionSpeed={1} // No explosion
-            fallSpeed={3000} // Smooth fall
-            fadeOut={true}
-          />
 
           <View style={styles.quizCompleteBox}>
             <Text style={styles.finishedText}>Quiz Completed!</Text>

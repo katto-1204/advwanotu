@@ -1,3 +1,4 @@
+import React from "react";
 import { View } from "react-native";
 import UserInfo from "./components/UserInfo";
 import { UserProvider } from "./useContext";

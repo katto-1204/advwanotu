@@ -3,10 +3,10 @@ import { createContext } from "react";
 
 export const UserInfoContext = createContext(null);
 
-export default function Layout() {
+export default function RootLayout() {
   const user = {
-    name: "User name",
-    email: "email@email.com",
+    name: 'User name',
+    email: 'email@email.com'
   };
 
   return (
