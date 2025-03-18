@@ -40,20 +40,21 @@ export default function Quiz() {
     }
   }, [timeLeft, started, quizFinished]);
 
+  
   function fetchQuestions() {
     if (
       !numQuestions ||
       isNaN(numQuestions) ||
       numQuestions < 1 ||
-      numQuestions > 10
+      numQuestions > 30
     ) {
-      alert("Please enter a number between 1 and 10.");
+      alert("Please enter a number between 1 and 30.");
       return;
     }
-
+  
     setGenerating(true);
     fetch(
-      `https://opentdb.com/api.php?amount=${numQuestions}&category=30&difficulty=easy`
+      `https://opentdb.com/api.php?amount=${numQuestions}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -69,15 +70,22 @@ export default function Quiz() {
         }, 2000);
       });
   }
+  
 
-  useEffect(() => {
-    if (quizzes.length > 0 && quizzes[current]) {
-      setAnswers([
-        ...quizzes[current].incorrect_answers,
-        quizzes[current].correct_answer,
-      ]);
-    }
-  }, [current, quizzes]);
+useEffect(() => {
+  function shuffle(array: any[]) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  if (quizzes.length > 0 && quizzes[current]) {
+    const shuffledAnswers = shuffle([
+      ...quizzes[current].incorrect_answers,
+      quizzes[current].correct_answer,
+    ]);
+    setAnswers(shuffledAnswers);
+  }
+}, [current, quizzes]);
+
 
   function handleAnswerSelection(answer) {
     if (!quizzes || quizzes.length === 0 || !quizzes[current]) {
@@ -119,9 +127,9 @@ export default function Quiz() {
               style={styles.input}
               keyboardType="numeric"
               maxLength={2}
-              placeholder="1-10"
+              placeholder="1-30"
               onChangeText={(text) =>
-                setNumQuestions(text.replace(/[^0-9]/g, ""))
+                setNumQuestions(text.replace(/[^0-30]/g, ""))
               }
               value={numQuestions}
             />
@@ -130,13 +138,13 @@ export default function Quiz() {
                 styles.startButton,
                 (!numQuestions ||
                   parseInt(numQuestions) < 1 ||
-                  parseInt(numQuestions) > 10) && { opacity: 0.5 },
+                  parseInt(numQuestions) > 30) && { opacity: 0.5 },
               ]}
               onPress={fetchQuestions}
               disabled={
                 !numQuestions ||
                 parseInt(numQuestions) < 1 ||
-                parseInt(numQuestions) > 10
+                parseInt(numQuestions) > 30
               }
             >
               <Text style={styles.startButtonText}>Generate Questions</Text>

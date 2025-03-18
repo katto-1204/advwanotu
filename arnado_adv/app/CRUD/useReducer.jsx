@@ -147,7 +147,16 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: "bold" },
   count: { color: "#007bff" },
   addTaskContainer: { flexDirection: "row", marginVertical: 10 },
-  input: { flex: 1, borderWidth: 1, borderColor: "#ccc", padding: 10, borderRadius: 8 },
+  input: { 
+    flex: 1, 
+    borderWidth: 1, 
+    borderColor: "#ccc", 
+    padding: 8, 
+    borderRadius: 8, 
+    fontSize: 14, 
+    minHeight: 40,
+    maxHeight: 100
+  },
   addButton: { backgroundColor: "#007bff", padding: 15, borderRadius: 8, marginLeft: 10 },
   addButtonText: { color: "#fff", fontWeight: "bold", fontSize: 16 },
   taskItem: { padding: 15, backgroundColor: "#fff", borderBottomWidth: 1, borderColor: "#ccc" },
